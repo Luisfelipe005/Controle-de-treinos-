@@ -3,10 +3,7 @@ package com.sistema.de.controle.treinos.controle_de_treinos.controller;
 import com.sistema.de.controle.treinos.controle_de_treinos.model.TipoTreino;
 import com.sistema.de.controle.treinos.controle_de_treinos.model.Treino;
 import com.sistema.de.controle.treinos.controle_de_treinos.service.TreinosService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,11 +18,16 @@ public class TreinosController {
 
     @GetMapping
     public List<Treino> getAll(){
-        return treinosService.treinos();
+        return treinosService.getTreinos();
     }
 
     @GetMapping("/tipo")
-    public List<Treino> buscaByTipo(@RequestParam TipoTreino tipo){
-        return
+    public Treino buscaByTipo(@RequestParam TipoTreino tipo){
+        return treinosService.buscaByTipo(tipo);
+    }
+
+    @PostMapping
+    public Treino criaTreino(@RequestBody Treino treino){
+        return treinosService.criaTreino(treino);
     }
 }
