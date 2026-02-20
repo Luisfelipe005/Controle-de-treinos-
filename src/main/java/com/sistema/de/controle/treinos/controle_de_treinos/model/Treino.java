@@ -1,7 +1,6 @@
 package com.sistema.de.controle.treinos.controle_de_treinos.model;
 
 import jakarta.persistence.*;
-import org.springframework.validation.annotation.Validated;
 
 @Entity
 @Table(name = "Tabela_Treinos")

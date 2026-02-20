@@ -30,4 +30,19 @@ public class TreinosController {
     public Treino criaTreino(@RequestBody Treino treino){
         return treinosService.criaTreino(treino);
     }
+
+    @PutMapping("/{id}")
+    public Treino atualizaTreino(@PathVariable Long id, @RequestBody Treino treino){
+        return treinosService.atualizaTreino(treino,id);
+    }
+
+    @PatchMapping("/{id}/concluir")
+    public void marcarConcluido(@PathVariable Long id){
+        treinosService.delete(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        treinosService.delete(id);
+    }
 }
