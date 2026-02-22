@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TreinosRepository extends JpaRepository<Treino, Long> {
     Treino findByTipo(TipoTreino tipo);
+    boolean existsBynome(String nome);
 }

@@ -2,6 +2,7 @@ package com.sistema.de.controle.treinos.controle_de_treinos.service;
 
 import com.sistema.de.controle.treinos.controle_de_treinos.exception.Camposvazioexception;
 import com.sistema.de.controle.treinos.controle_de_treinos.exception.Erroexception;
+import com.sistema.de.controle.treinos.controle_de_treinos.exception.Nomeduplicadoexception;
 import com.sistema.de.controle.treinos.controle_de_treinos.exception.Treinonaoencontradoexception;
 import com.sistema.de.controle.treinos.controle_de_treinos.model.TipoTreino;
 import com.sistema.de.controle.treinos.controle_de_treinos.model.Treino;
@@ -36,8 +37,13 @@ public class TreinosService {
         if(treino.getNome() == null || treino.getNome().isEmpty() || treino.getDuracaoemminutos() <= 1){
             throw new Camposvazioexception("Verifique se seu treino tem nome ou se seu treino tem mais que 0 minutos!");
         }
+        if (treinosRepository.existsBynome(treino.getNome())){
+            throw new Nomeduplicadoexception("Este nome ja existe!");
+        }
+
         return treinosRepository.save(treino);
     }
+
     /*Atualiza treino*/
     public Treino atualizaTreino(Treino treino, Long id){
         Optional<Treino> optionalTreino = treinosRepository.findById(id);

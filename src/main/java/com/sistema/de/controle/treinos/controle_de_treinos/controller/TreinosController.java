@@ -46,4 +46,5 @@ public class TreinosController {
     public void delete(@PathVariable Long id){
         treinosService.delete(id);
     }
+
 }

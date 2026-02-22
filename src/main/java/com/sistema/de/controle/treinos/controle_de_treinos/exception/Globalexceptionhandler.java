@@ -21,4 +21,8 @@ public class Globalexceptionhandler {
     public ResponseEntity<String> responseEntity3(Erroexception erroexception){
         return ResponseEntity.status(404).body(erroexception.getMessage());
     }
+    @ExceptionHandler(Nomeduplicadoexception.class)
+    public ResponseEntity<String> responseEntity4(Nomeduplicadoexception nomeduplicadoexception){
+        return ResponseEntity.status(404).body(nomeduplicadoexception.getMessage());
+    }
 }
