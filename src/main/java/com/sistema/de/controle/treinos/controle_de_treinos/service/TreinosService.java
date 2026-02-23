@@ -24,12 +24,32 @@ public class TreinosService {
     public List<Treino> getTreinos(){
         return treinosRepository.findAll();
     }
+
+    /*Mostra lista de concluido*/
+    public List<Treino> buscaConcluidos(){
+        return treinosRepository.findByconcluido(true);
+    }
+
+    /*Mostra lista de não concluido*/
+    public List<Treino> buscaNaoConcluido(){
+        return treinosRepository.findByconcluido(false);
+    }
+
     /*Mostra lista pelo tipo de treino*/
     public Treino buscaByTipo(TipoTreino tipo){
        if(treinosRepository.findByTipo(tipo) == null){
            throw new Treinonaoencontradoexception("Treino não foi encontrado!");
        }
        return treinosRepository.findByTipo(tipo);
+    }
+
+    /*Busca Treino por nome*/
+    public Treino buscaPorNome(String nome){
+
+       if (treinosRepository.findBynomeContainsIgnoreCase(nome) == null){
+           throw new Treinonaoencontradoexception("Não achamos o treino com esse nome!");
+       }
+       return treinosRepository.findBynomeContainsIgnoreCase(nome);
     }
 
     /*Cria treino*/

@@ -22,9 +22,24 @@ public class TreinosController {
         return treinosService.getTreinos();
     }
 
+    @GetMapping("/concluido")/*usuario devera mandar junto com a url o
+    /concluido para mostras a lista de apenas concluidos*/
+    public List<Treino> buscaConcluidos(){
+        return treinosService.buscaConcluidos();
+    }
+    @GetMapping("/naoconcluido")
+    public List<Treino> buscaNaoConcluido(){
+        return treinosService.buscaNaoConcluido();
+    }
+
     @GetMapping("/tipo")
     public Treino buscaByTipo(@RequestParam TipoTreino tipo){
         return treinosService.buscaByTipo(tipo);
+    }
+
+    @GetMapping("/buscar")
+    public Treino buscaPorNome(@RequestParam String nome){
+        return treinosService.buscaPorNome(nome);
     }
 
     @PostMapping
